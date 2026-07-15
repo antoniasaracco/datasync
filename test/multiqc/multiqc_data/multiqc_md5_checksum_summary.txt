@@ -1,0 +1,4 @@
+Sample	Match	Mismatch	Missing	Unexpected
+Illumina_annotation_md5	15	0	0	0
+benchmark_bed_md5	1	0	0	0
+test_fastq_md5	1	0	0	0

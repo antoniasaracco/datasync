@@ -1,0 +1,11 @@
+COMPARECHECKSUM:
+  r-base: 4.2.1
+MD5SUM:
+  md5sum: 9.5
+RCLONE_COPY:
+  rclone: 1.65.0-DEV
+SHASUM:
+  sha256sum: 9.5
+Workflow:
+    nf-core/datasync: v1.0dev
+    Nextflow: 26.04.6

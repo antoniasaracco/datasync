@@ -1,0 +1,6 @@
+Sample	r-base	md5sum	rclone	sha256sum	nf-core/datasync	Nextflow
+COMPARECHECKSUM	4.2.1					
+MD5SUM		9.5				
+RCLONE_COPY			1.65.0-DEV			
+SHASUM				9.5		
+Workflow					v1.0dev	26.04.6
