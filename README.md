@@ -47,7 +47,18 @@ graph LR
 > [!NOTE]
 > If you are new to Nextflow and nf-core, see the [nf-core environment setup guide](https://nf-co.re/docs/get_started/environment_setup/overview). Nextflow 25.10.4 or later is required.
 
-Create a samplesheet containing one transfer per row:
+To explore the pipeline outputs before preparing your own data, run the bundled `test` profile with a container profile:
+
+```bash
+nextflow run nf-core/datasync \
+    -r <VERSION> \
+    -profile test,docker \
+    --outdir results
+```
+
+The `test` profile supplies a small samplesheet and rclone configuration automatically. It also enables `--rclone_dry_run`, so no files are actually transferred. This makes it useful for exploring the `rclone/` output folders and `multiqc/multiqc_report.html`; remember that post-copy comparison reports describe whatever is already present at the destination because the dry run does not write transfer data.
+
+To run the pipeline on your own data, create a samplesheet containing one transfer per row:
 
 ```csv
 sample,input,output_path,checksum_md5,checksum_sha
@@ -66,7 +77,7 @@ nextflow run nf-core/datasync \
     --rclone_config /path/to/rclone.conf
 ```
 
-`--rclone_config` is optional only when every source and destination is accessible without a configured rclone remote. See the [rclone configuration section](docs/usage.md#configuring-rclone-remotes) for the tested S3-to-S3 use case and guidance on adapting rclone configuration files for other providers. To preview copy operations without transferring data, add `--rclone_dry_run`; note that subsequent comparison reports will then describe the unchanged destination.
+`--rclone_config` is optional only when every source and destination is accessible without a configured rclone remote. See the [rclone configuration section](docs/usage.md#configuring-rclone-remotes) for the tested S3-to-S3 use case and guidance on adapting rclone configuration files for other providers. To preview your own copy operations without transferring data, add `--rclone_dry_run`; note that subsequent comparison reports will then describe the unchanged destination.
 
 > [!WARNING]
 > Provide pipeline parameters on the command line or with Nextflow's `-params-file` option. Do not put pipeline parameters in a configuration supplied with `-c`; custom configuration files are intended for executor and resource settings.
