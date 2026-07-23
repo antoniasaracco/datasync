@@ -28,9 +28,9 @@ Each row describes an independent transfer. The header names are fixed; columns 
 | `checksum_md5` | One checksum column | Path or URL to an MD5 checksum manifest used to validate `input` before copying. The manifest format is described below. Leave empty when using SHA-256 only.                                                                           |
 | `checksum_sha` | One checksum column | Path or URL to a SHA-256 checksum manifest used to validate `input` before copying. The manifest format is described below. Leave empty when using MD5 only.                                                                            |
 
-At least one checksum manifest is required on every row. If both are supplied, both validations run. Checksum files must use the format accepted by [`rclone checksum`](https://rclone.org/commands/rclone_checksum/): one checksum record per line with the hash value followed by the file path. Paths must be relative to the source root from the `input` column, not absolute paths. For a directory input such as `/data/run_001`, write paths relative to `/data/run_001`; for a single-file input, use the input file name.
+At least one checksum manifest is required on every row. If both are supplied, both validations run. Checksum files must use the format accepted by [`rclone checksum`](https://rclone.org/commands/rclone_checksum/): one checksum record per line with the hash value followed by two spaces and then the file path. Paths must be relative to the source root from the `input` column, not absolute paths. For a directory input such as `/data/run_001`, write paths relative to `/data/run_001`; for a single-file input, use the input file name.
 
-Checksum manifests are whitespace-delimited text files rather than CSV/TSV tables with a header. The required fields are:
+Checksum manifests may use a `.tsv` or `.csv` filename extension, but their contents are not tab-separated or comma-separated tables and must not include a header. Each record is plain text with the hash and path separated by exactly two spaces. The required fields are:
 
 | Field | Required | Description                                                                                     |
 | ----- | -------- | ----------------------------------------------------------------------------------------------- |
